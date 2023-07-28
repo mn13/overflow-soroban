@@ -1,8 +1,9 @@
 #![no_std]
-use soroban_sdk::{contractimpl, log, Env, Symbol};
+use soroban_sdk::{contractimpl, log, Env, Symbol, symbol_short, contract};
 
-const COUNTER: Symbol = Symbol::short("COUNTER");
+const COUNTER: Symbol = symbol_short!("COUNTER");
 
+#[contract]
 pub struct IncrementContract;
 
 #[contractimpl]
@@ -12,16 +13,16 @@ impl IncrementContract {
         // Get the current count.
         let mut count: u128 = env
             .storage()
+            .instance()
             .get(&COUNTER)
-            .unwrap_or(Ok(0)) // If no value set, assume 0.
-            .unwrap(); // Panic if the value of COUNTER is not u128.
+            .unwrap_or(0); // If no value set, assume 0.
         log!(&env, "count: {}", count);
 
         // Increment the count.
         count += n;
 
         // Save the count.
-        env.storage().set(&COUNTER, &count);
+        env.storage().instance().set(&COUNTER, &count);
 
         // Return the count to the caller.
         count
@@ -32,16 +33,16 @@ impl IncrementContract {
         // Get the current count.
         let mut count: u128 = env
             .storage()
+            .instance()
             .get(&COUNTER)
-            .unwrap_or(Ok(0)) // If no value set, assume 0.
-            .unwrap(); // Panic if the value of COUNTER is not u128.
+            .unwrap_or(0); // If no value set, assume 0.
         log!(&env, "count: {}", count);
 
         // Increment the count.
         count = count.checked_add(n).unwrap();
 
         // Save the count.
-        env.storage().set(&COUNTER, &count);
+        env.storage().instance().set(&COUNTER, &count);
 
         // Return the count to the caller.
         count
@@ -52,16 +53,16 @@ impl IncrementContract {
         // Get the current count.
         let mut count: u128 = env
             .storage()
+            .instance()
             .get(&COUNTER)
-            .unwrap_or(Ok(0)) // If no value set, assume 0.
-            .unwrap(); // Panic if the value of COUNTER is not u128.
+            .unwrap_or(0); // If no value set, assume 0.
         log!(&env, "count: {}", count);
 
         // Decrement the count.
         count -= n;
 
         // Save the count.
-        env.storage().set(&COUNTER, &count);
+        env.storage().instance().set(&COUNTER, &count);
 
         // Return the count to the caller.
         count
@@ -72,16 +73,16 @@ impl IncrementContract {
         // Get the current count.
         let mut count: u128 = env
             .storage()
+            .instance()
             .get(&COUNTER)
-            .unwrap_or(Ok(0)) // If no value set, assume 0.
-            .unwrap(); // Panic if the value of COUNTER is not u128.
+            .unwrap_or(0); // If no value set, assume 0.
         log!(&env, "count: {}", count);
 
         // Decrement the count.
         count = count.checked_sub(n).unwrap();
 
         // Save the count.
-        env.storage().set(&COUNTER, &count);
+        env.storage().instance().set(&COUNTER, &count);
 
         // Return the count to the caller.
         count
@@ -92,16 +93,16 @@ impl IncrementContract {
         // Get the current count.
         let mut count: u128 = env
             .storage()
+            .instance()
             .get(&COUNTER)
-            .unwrap_or(Ok(0)) // If no value set, assume 0.
-            .unwrap(); // Panic if the value of COUNTER is not u128.
+            .unwrap_or(0); // If no value set, assume 0.
         log!(&env, "count: {}", count);
 
         // Decrement the count.
         count = count * n;
 
         // Save the count.
-        env.storage().set(&COUNTER, &count);
+        env.storage().instance().set(&COUNTER, &count);
 
         // Return the count to the caller.
         count
@@ -112,16 +113,16 @@ impl IncrementContract {
         // Get the current count.
         let mut count: u128 = env
             .storage()
+            .instance()
             .get(&COUNTER)
-            .unwrap_or(Ok(0)) // If no value set, assume 0.
-            .unwrap(); // Panic if the value of COUNTER is not u128.
+            .unwrap_or(0); // If no value set, assume 0.
         log!(&env, "count: {}", count);
 
         // Decrement the count.
         count = count.checked_mul(n).unwrap();
 
         // Save the count.
-        env.storage().set(&COUNTER, &count);
+        env.storage().instance().set(&COUNTER, &count);
 
         // Return the count to the caller.
         count
@@ -132,16 +133,16 @@ impl IncrementContract {
         // Get the current count.
         let mut count: u128 = env
             .storage()
+            .instance()
             .get(&COUNTER)
-            .unwrap_or(Ok(0)) // If no value set, assume 0.
-            .unwrap(); // Panic if the value of COUNTER is not u128.
+            .unwrap_or(0); // If no value set, assume 0.
         log!(&env, "count: {}", count);
 
         // divide the count.
         count = count/n;
 
         // Save the count.
-        env.storage().set(&COUNTER, &count);
+        env.storage().instance().set(&COUNTER, &count);
 
         // Return the count to the caller.
         count
@@ -153,16 +154,16 @@ impl IncrementContract {
         // Get the current count.
         let mut count: u128 = env
             .storage()
+            .instance()
             .get(&COUNTER)
-            .unwrap_or(Ok(0)) // If no value set, assume 0.
-            .unwrap(); // Panic if the value of COUNTER is not u128.
+            .unwrap_or(0); // If no value set, assume 0.
         log!(&env, "count: {}", count);
 
         // divide the count.
         count = count.checked_div(n).unwrap();
 
         // Save the count.
-        env.storage().set(&COUNTER, &count);
+        env.storage().instance().set(&COUNTER, &count);
 
         // Return the count to the caller.
         count

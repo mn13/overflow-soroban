@@ -11,10 +11,10 @@ crate-type = ["cdylib"]
 doctest = false
 
 [dependencies]
-soroban-sdk = { version = "0.7.0", git = "https://github.com/stellar/rs-soroban-sdk", rev = "9bbac60c25cee9aa995025db5af828c243d15690"}
+soroban-sdk = { version = "0.9.2" }
 
 [dev_dependencies]
-soroban-sdk = { version = "0.7.0", git = "https://github.com/stellar/rs-soroban-sdk", rev = "9bbac60c25cee9aa995025db5af828c243d15690", features = ["testutils"] }
+soroban-sdk = { version = "0.9.2", features = ["testutils"] }
 
 [profile.release]
 opt-level = "z"
